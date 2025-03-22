@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <base target="_top">
+
+  <!-- เรียกใช้ Bootstrap จาก CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- เรียกใช้ Font Awesome จาก CDN -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+
+  <!-- เรียกใช้ Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Tom Select CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.bootstrap5.min.css" rel="stylesheet">
+
+  <!-- CSS หลัก -->
+  <style>
+    /* styles.css */
+    :root {
+      --primary: #007bff;
+      --secondary: #6c757d;
+      --success: #28a745;
+      --danger: #dc3545;
+      --warning: #ffc107;
+      --info: #17a2b8;
+      --light: #f8f9fa;
+      --dark: #343a40;
+    }
+
+    body {
+      font-family: 'Sarabun', sans-serif !important;
+      background-color: var(--light) !important;
+      color: var(--dark) !important;
+      line-height: 1.6;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: #007bff !important;
+    }
+
+    /* Sidebar Styles */
+    .sidebar {
+      background-color: #fff !important;
+      border-right: 1px solid #dee2e6 !important;
+      height: 100vh !important;
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      z-index: 100 !important;
+      padding-top: 56px !important;
+      /* Adjust for navbar height */
+    }
+
+    .sidebar-menu {
+      list-style: none !important;
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+
+    .sidebar-menu li a {
+      display: block !important;
+      padding: 12px 20px !important;
+      color: #343a40 !important;
+      text-decoration: none !important;
+      transition: background-color 0.3s ease !important;
+    }
+
+    .sidebar-menu li a:hover {
+      background-color: #e9ecef !important;
+    }
+
+    .sidebar-menu li a.active {
+      background-color: #007bff !important;
+      color: #fff !important;
+    }
+
+    /* Main Content Styles */
+    .container {
+      padding-bottom: 30px !important;
+    }
+
+    .form-section {
+      background-color: #fff !important;
+      border: 1px solid #dee2e6 !important;
+      border-radius: 8px !important;
+      padding: 20px !important;
+      margin-bottom: 20px !important;
+      box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+    }
+
+    .form-section h2 {
+      font-size: 1.5rem !important;
+      margin-bottom: 1.5rem !important;
+      color: #007bff !important;
+      border-bottom: 2px solid #007bff !important;
+      padding-bottom: 0.5rem !important;
+    }
+
+    .form-label {
+      font-weight: 500 !important;
+      color: #495057 !important;
+    }
+
+    .form-control,
+    .form-select {
+      border-radius: 0.25rem !important;
+    }
+
+    .btn-primary {
+      background-color: #007bff !important;
+      border-color: #007bff !important;
+    }
+
+    .btn-primary:hover {
+      background-color: #0069d9 !important;
+      border-color: #0062cc !important;
+    }
+
+    .btn-outline-primary {
+      color: #007bff !important;
+      border-color: #007bff !important;
+    }
+
+    .btn-outline-primary:hover {
+      background-color: #007bff !important;
+      color: #fff !important;
+    }
+
+    /* Table Styles */
+    .table-responsive {
+      overflow-x: auto !important;
+    }
+
+    .table {
+      margin-bottom: 0 !important;
+    }
+
+    .table th,
+    .table td {
+      vertical-align: middle !important;
+    }
+
+    /* Mobile Menu Styles */
+    .offcanvas {
+      z-index: 101 !important;
+    }
+
+    /* Print Template Styles */
+    .print-template {
+      font-family: 'Sarabun', sans-serif !important;
+      padding: 20px !important;
+    }
+
+    .print-template h1 {
+      font-size: 2rem !important;
+      text-align: center !important;
+      margin-bottom: 1rem !important;
+    }
+
+    .print-template p {
+      font-size: 1.1rem !important;
+    }
+
+    .print-template .table {
+      width: 100% !important;
+      border-collapse: collapse !important;
+    }
+
+    .print-template .table th,
+    .print-template .table td {
+      border: 1px solid #000 !important;
+      padding: 8px !important;
+      text-align: left !important;
+    }
+
+    .print-template .row {
+      display: flex !important;
+      flex-wrap: wrap !important;
+      margin-right: -15px !important;
+      margin-left: -15px !important;
+    }
+
+    .print-template .col-6 {
+      flex: 0 0 50% !important;
+      max-width: 50% !important;
+      padding-right: 15px !important;
+      padding-left: 15px !important;
+    }
+
+    .print-template .col-12 {
+      flex: 0 0 100% !important;
+      max-width: 100% !important;
+      padding-right: 15px !important;
+      padding-left: 15px !important;
+    }
+
+    /* Utility Classes */
+    .text-primary {
+      color: #007bff !important;
+    }
+
+    .text-center {
+      text-align: center !important;
+    }
+
+    .mb-4 {
+      margin-bottom: 1.5rem !important;
+    }
+
+    .mt-5 {
+      margin-top: 3rem !important;
+    }
+
+    .me-1 {
+      margin-right: 0.25rem !important;
+    }
+
+    /* Adjustments for smaller screens */
+    @media (max-width: 991.98px) {
+      .sidebar {
+        display: none !important;
+      }
+
+      .container {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+      }
+    }
+  </style>
+
+  <title>ฟอร์มบันทึกข้อมูลใบตั้งเบิก - ระบบจัดการการเบิกจ่ายเงิน</title>
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <!-- เมนูด้านข้าง -->
+      <div class="col-lg-3 col-xl-2 d-none d-lg-block">
+        <div class="sidebar">
+          <div class="text-center p-3">
+            <i class="fas fa-money-check-alt fa-3x text-primary mb-2"></i>
+            <h5 class="mb-3">ระบบจัดการการเบิกจ่ายเงิน</h5>
+          </div>
+          <hr>
+          <ul class="sidebar-menu">
+            <li><a href="<?!= ScriptApp.getService().getUrl(); ?>"><i class="fas fa-home"></i> หน้าหลัก</a></li>
+            <li><a href="<?!= ScriptApp.getService().getUrl(); ?>?page=form" class="active"><i
+                  class="fas fa-file-invoice"></i> สร้างใบตั้งเบิก</a></li>
+            <li><a href="<?!= ScriptApp.getService().getUrl(); ?>?page=PaymentList"><i class="fas fa-list"></i>
+                รายการใบตั้งเบิก</a></li>
+            <li><a href="<?!= ScriptApp.getService().getUrl(); ?>?page=admin"><i class="fas fa-user-tie"></i>
+                สำหรับผู้บริหาร</a></li>
+            <li><a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> ออกจากระบบ</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- เนื้อหาหลัก -->
+      <div class="col-lg-9 col-xl-10 col-12">
+        <div class="container mt-4">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <a href="<?= ScriptApp.getService().getUrl(); ?>" class="text-decoration-none text-muted">
+              <i class="fas fa-arrow-left me-1"></i> กลับหน้าหลัก
+            </a>
+
+            <!-- แสดงเมนูบนมือถือ -->
+            <div class="d-lg-none">
+              <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#mobileMenu">
+                <i class="fas fa-bars"></i> เมนู
+              </button>
+            </div>
+          </div>
+
+          <h1 class="mb-4" id="formTitle">สร้างใบตั้งเบิกใหม่</h1>
+
+          <form id="paymentRequisitionForm">
+            <!-- ข้อมูลเอกสาร -->
+            <div class="form-section">
+              <h2>ข้อมูลเอกสาร</h2>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label for="documentNumber" class="form-label">เลขที่เอกสาร</label>
+                  <input type="text" class="form-control" id="documentNumber" readonly>
+                  <div class="form-text">เลขที่เอกสารจะถูกสร้างอัตโนมัติ</div>
+                </div>
+                <div class="col-md-6">
+                  <label for="referenceNumber" class="form-label">เลขที่อ้างอิง</label>
+                  <input type="text" class="form-control" id="referenceNumber"
+                    placeholder="เลขที่เอกสารอ้างอิง (ถ้ามี)">
+                </div>
+              </div>
+            </div>
+
+            <!-- ข้อมูลพื้นฐาน -->
+            <div class="form-section">
+              <h2>ข้อมูลพื้นฐาน</h2>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label for="company" class="form-label">บริษัท</label>
+                  <select class="form-select" id="company">
+                    <option value="">-- เลือกบริษัท (ไม่บังคับ) --</option>
+                    <!-- ตัวเลือกจะถูกเพิ่มด้วย JavaScript -->
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label for="recordDate" class="form-label">วันที่บันทึก</label>
+                  <input type="date" class="form-control" id="recordDate" required>
+                </div>
+                <div class="col-md-6">
+                  <label for="project" class="form-label">โครงการ <span class="text-danger">*</span></label>
+                  <select class="form-select" id="project" required>
+                    <option value="">-- เลือกโครงการ --</option>
+                    <!-- ตัวเลือกจะถูกเพิ่มด้วย JavaScript -->
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label for="dueDate" class="form-label">วันที่ครบกำหนด</label>
+                  <input type="date" class="form-control" id="dueDate" required>
+                </div>
+              </div>
+            </div>
+
+            <!-- ข้อมูลการจ่ายเงิน -->
+            <div class="form-section">
+              <h2>ข้อมูลการจ่ายเงิน</h2>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label for="expenseType" class="form-label">ประเภทรายจ่าย <span class="text-danger">*</span></label>
+                  <select class="form-select" id="expenseType" required>
+                    <option value="">-- เลือกประเภทรายจ่าย --</option>
+                    <!-- ตัวเลือกจะถูกเพิ่มด้วย JavaScript -->
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label for="paymentMethod" class="form-label">รูปแบบการจ่าย <span class="text-danger">*</span></label>
+                  <select class="form-select" id="paymentMethod" required>
+                    <option value="">-- เลือกรูปแบบการจ่าย --</option>
+                    <!-- ตัวเลือกจะถูกเพิ่มด้วย JavaScript -->
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label for="recipient" class="form-label">ผู้รับเงิน <span class="text-danger">*</span></label>
+                  <select class="form-select" id="recipient" required>
+                    <option value="">-- เลือกผู้รับเงิน --</option>
+                    <!-- ตัวเลือกจะถูกเพิ่มด้วย JavaScript -->
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label for="recipientBankAccount" class="form-label">บัญชีธนาคาร</label>
+                  <input type="text" class="form-control" id="recipientBankAccount" readonly>
+                </div>
+                <div class="col-12">
+                  <label for="notes" class="form-label">หมายเหตุ</label>
+                  <textarea class="form-control" id="notes" rows="2" placeholder="รายละเอียดเพิ่มเติม..."></textarea>
+                </div>
+              </div>
+            </div>
+
+            <!-- รายการค่าใช้จ่าย -->
+            <div class="form-section">
+              <h2>รายการค่าใช้จ่าย</h2>
+              <div class="table-responsive mb-3">
+                <table class="table table-hover" id="expenseItemsTable">
+                  <thead>
+                    <tr>
+                      <th style="width: 10%">ลำดับ</th>
+                      <th style="width: 60%">รายละเอียด</th>
+                      <th style="width: 20%">จำนวนเงิน</th>
+                      <th style="width: 10%"></th>
+                    </tr>
+                  </thead>
+                  <tbody id="expenseItemsBody">
+                    <!-- รายการจะถูกเพิ่มด้วย JavaScript -->
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <td colspan="2" class="text-end fw-bold">รวมทั้งสิ้น</td>
+                      <td>
+                        <input type="text" class="form-control text-end" id="totalAmount" readonly>
+                      </td>
+                      <td></td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+
+              <button type="button" class="btn btn-sm btn-outline-primary" id="addItemBtn">
+                <i class="fas fa-plus-circle me-1"></i> เพิ่มรายการ
+              </button>
+            </div>
+
+            <!-- ปุ่มดำเนินการ -->
+            <div class="form-section">
+              <div class="d-flex flex-wrap gap-2 justify-content-between">
+                <div>
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown"
+                      aria-expanded="false">
+                      <i class="fas fa-print me-1"></i> พิมพ์เอกสาร
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#" id="printRequisitionBtn">พิมพ์ใบตั้งเบิก</a></li>
+                      <li><a class="dropdown-item" href="#" id="printTransferBtn">พิมพ์ใบนำฝาก</a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div>
+                  <button type="button" class="btn btn-outline-secondary me-2" id="resetBtn">
+                    <i class="fas fa-redo me-1"></i> รีเซ็ต
+                  </button>
+                  <button type="submit" class="btn btn-primary" id="saveBtn">
+                    <i class="fas fa-save me-1"></i> บันทึกข้อมูล
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- เมนูมือถือ -->
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileMenu">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title">ระบบจัดการการเบิกจ่ายเงิน</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <ul class="sidebar-menu">
+        <li><a href="<?= ScriptApp.getService().getUrl(); ?>"><i class="fas fa-home"></i> หน้าหลัก</a></li>
+        <li><a href="<?= ScriptApp.getService().getUrl(); ?>?page=form" class="active"><i
+              class="fas fa-file-invoice"></i> สร้างใบตั้งเบิก</a></li>
+        <li><a href="<?= ScriptApp.getService().getUrl(); ?>?page=list"><i class="fas fa-list"></i>
+            รายการใบตั้งเบิก</a></li>
+        <li><a href="<?= ScriptApp.getService().getUrl(); ?>?page=admin"><i class="fas fa-user-tie"></i>
+            สำหรับผู้บริหาร</a></li>
+        <li><a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> ออกจากระบบ</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- โมดัลรายละเอียดพิมพ์เอกสาร -->
+  <div class="modal fade" id="printModal" tabindex="-1" aria-labelledby="printModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="printModalLabel">พิมพ์เอกสาร</h5>
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="printModalBody">
+          <!-- เนื้อหาเอกสารจะถูกใส่ที่นี่ -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
+          <button type="button" class="btn btn-primary" onclick="window.print()">
+            <i class="fas fa-print me-1"></i> พิมพ์
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- โมดัลแสดงผลการทำงาน -->
+  <div class="modal fade" id="resultModal" tabindex="-1" aria-labelledby="resultModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="resultModalLabel">ผลการทำงาน</h5>
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="resultModalBody">
+          <!-- ข้อความผลการทำงานจะถูกใส่ที่นี่ -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="resultModalBtn">ตกลง</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tom Select JS -->
+  <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.min.js"></script>
+
+  <!-- เรียกใช้ Bootstrap JavaScript จาก CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- JavaScript สำหรับฟอร์ม -->
+  <script>
+    // ตัวแปรสำหรับเก็บข้อมูลแมสเตอร์
+    let masterData = {};
+    let expenseItems = [];
+    let isEditMode = false;
+    let editDocNumber = '';
+
+    // เมื่อโหลดหน้าเสร็จ
+    document.addEventListener('DOMContentLoaded', function () {
+      // โหลดข้อมูลพื้นฐาน
+      loadMasterData();
+
+      // ตรวจสอบว่าเป็นการแก้ไขหรือไม่
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.has('id')) {
+        editDocNumber = urlParams.get('id');
+        isEditMode = true;
+        document.getElementById('formTitle').textContent = 'แก้ไขใบตั้งเบิก';
+        document.getElementById('saveBtn').innerHTML = '<i class="fas fa-save me-1"></i> บันทึกการแก้ไข';
+        loadRequisitionData(editDocNumber);
+      } else {
+        // สร้างเลขที่เอกสารใหม่
+        generateDocumentNumber();
+
+        // กำหนดวันที่ปัจจุบัน
+        const today = new Date();
+        document.getElementById('recordDate').valueAsDate = today;
+
+        // กำหนดวันที่ครบกำหนดเป็น 7 วันจากวันนี้
+        const dueDate = new Date();
+        dueDate.setDate(dueDate.getDate() + 7);
+        document.getElementById('dueDate').valueAsDate = dueDate;
+
+        // เพิ่มรายการค่าใช้จ่ายแรก
+        addExpenseItem();
+      }
+
+      // เพิ่ม event listeners
+      document.getElementById('addItemBtn').addEventListener('click', addExpenseItem);
+      document.getElementById('paymentRequisitionForm').addEventListener('submit', handleFormSubmit);
+      document.getElementById('resetBtn').addEventListener('click', resetForm);
+      document.getElementById('recipient').addEventListener('change', updateRecipientBankAccount);
+      document.getElementById('printRequisitionBtn').addEventListener('click', function () {
+        preparePrintRequisition('requisition');
+      });
+      document.getElementById('printTransferBtn').addEventListener('click', function () {
+        preparePrintRequisition('transfer');
+      });
+    });
+
+    // โหลดข้อมูลพื้นฐาน
+    function loadMasterData() {
+      google.script.run
+        .withSuccessHandler(handleMasterDataLoaded)
+        .withFailureHandler(handleError)
+        .getFormMasterData();
+    }
+
+    // จัดการข้อมูลพื้นฐานที่โหลดมา
+    function handleMasterDataLoaded(data) {
+      masterData = data;
+
+      // เพิ่มตัวเลือกลงในฟอร์ม
+      populateSelectOptions('company', data.companies, 'name');
+      populateSelectOptions('project', data.projects, 'name');
+      populateSelectOptions('expenseType', data.expenseTypes, 'name');
+      populateSelectOptions('paymentMethod', data.paymentMethods, 'name');
+      populateSelectOptions('recipient', data.recipients, 'name');
+    }
+
+    // Initialize Tom Select
+    function initTomSelect(elementId) {
+      return new TomSelect(`#${elementId}`, {
+        plugins: {
+          dropdown_input: {}
+        }
+      });
+    }
+
+    // เพิ่มตัวเลือกใน select dropdown
+    function populateSelectOptions(elementId, items, valueProperty) {
+      const selectElement = document.getElementById(elementId);
+      let tomSelect = selectElement.tomselect; // Get existing Tom Select instance
+
+      if (!tomSelect) {
+        // Initialize TomSelect if it doesn't exist
+        tomSelect = initTomSelect(elementId);
+        selectElement.tomselect = tomSelect; // Store the instance
+      }
+
+      // Clear existing options using Tom Select API
+      tomSelect.clearOptions();
+
+      // Add options from data
+      items.forEach(item => {
+        tomSelect.addOption({
+          value: item[valueProperty],
+          text: item[valueProperty]
+        });
+      });
+
+      // Refresh Tom Select to reflect the changes
+      tomSelect.refreshOptions(false);
+    }
+
+    // อัปเดตบัญชีธนาคารตามผู้รับเงิน
+    function updateRecipientBankAccount() {
+      const recipientName = document.getElementById('recipient').value;
+      const bankAccountInput = document.getElementById('recipientBankAccount');
+
+      if (recipientName && masterData.recipients) {
+        const recipient = masterData.recipients.find(r => r.name === recipientName);
+        if (recipient && recipient.bankAccount) {
+          bankAccountInput.value = recipient.bankAccount;
+        } else {
+          bankAccountInput.value = '';
+        }
+      } else {
+        bankAccountInput.value = '';
+      }
+    }
+
+    // สร้างเลขที่เอกสารใหม่
+    function generateDocumentNumber() {
+      google.script.run
+        .withSuccessHandler(function (docNumber) {
+          document.getElementById('documentNumber').value = docNumber;
+        })
+        .withFailureHandler(handleError)
+        .generateDocumentNumber();
+    }
+
+    // โหลดข้อมูลใบตั้งเบิกสำหรับแก้ไข
+    function loadRequisitionData(docNumber) {
+      google.script.run
+        .withSuccessHandler(function (result) {
+          if (result.success) {
+            populateFormWithData(result.data);
+          } else {
+            showResultModal("ข้อผิดพลาด", result.message, "error");
+          }
+        })
+        .withFailureHandler(handleError)
+        .getPaymentRequisitionByDocNumber(docNumber);
+    }
+
+    // แสดงข้อมูลใบตั้งเบิกในฟอร์ม
+    function populateFormWithData(data) {
+      document.getElementById('documentNumber').value = data["เลขที่เอกสาร"];
+      document.getElementById('referenceNumber').value = data["เลขที่อ้างอิง"] || '';
+      setSelectValue('company', data["บริษัท"] || '');
+      document.getElementById('recordDate').value = formatDateForInput(data["วันที่บันทึก"]);
+      document.getElementById('dueDate').value = formatDateForInput(data["วันที่ครบกำหนด"]);
+      setSelectValue('expenseType', data["ประเภทรายจ่าย"]);
+      setSelectValue('recipient', data["ผู้รับเงิน"]);
+      document.getElementById('recipientBankAccount').value = data["บัญชีธนาคาร"] || '';
+      setSelectValue('project', data["โครงการ"]);
+      setSelectValue('paymentMethod', data["รูปแบบการจ่าย"]);
+      document.getElementById('notes').value = data["หมายเหตุ"] || '';
+
+      // แปลง JSON string เป็น array
+      try {
+        expenseItems = JSON.parse(data["รายการ"]);
+      } catch (e) {
+        expenseItems = [];
+        console.error("Error parsing expense items:", e);
+      }
+
+      // ถ้าไม่มีรายการค่าใช้จ่าย ให้เพิ่มรายการว่าง
+      if (expenseItems.length === 0) {
+        addExpenseItem();
+      } else {
+        // แสดงรายการค่าใช้จ่าย
+        renderExpenseItems();
+        // คำนวณยอดรวม
+        calculateTotal();
+      }
+    }
+
+    function setSelectValue(selectId, value) {
+      const select = document.getElementById(selectId);
+      const tomSelect = select.tomselect; // Access the stored instance
+      if (select && value && tomSelect) {
+        tomSelect.setValue(value);
+      }
+    }
+
+    // แปลงวันที่สำหรับใช้ใน input type="date"
+    function formatDateForInput(dateStr) {
+      try {
+        const date = new Date(dateStr);
+        return date.toISOString().split('T')[0];
+      } catch (e) {
+        console.error("Error formatting date:", e);
+        return '';
+      }
+    }
+
+    // เพิ่มรายการค่าใช้จ่าย
+    function addExpenseItem() {
+      expenseItems.push({
+        description: '',
+        amount: 0
+      });
+
+      renderExpenseItems();
+    }
+
+    // ลบรายการค่าใช้จ่าย
+    function removeExpenseItem(index) {
+      expenseItems.splice(index, 1);
+
+      // ถ้าไม่มีรายการเหลือ ให้เพิ่มรายการว่าง
+      if (expenseItems.length === 0) {
+        addExpenseItem();
+      } else {
+        renderExpenseItems();
+        calculateTotal();
+      }
+    }
+
+    // แสดงรายการค่าใช้จ่าย
+    function renderExpenseItems() {
+      const tbody = document.getElementById('expenseItemsBody');
+      tbody.innerHTML = '';
+
+      expenseItems.forEach((item, index) => {
+        const tr = document.createElement('tr');
+
+        tr.innerHTML = `
+          <td>${index + 1}</td>
+          <td>
+            <input type="text" class="form-control" value="${item.description}" 
+                   onchange="updateExpenseItem(${index}, 'description', this.value)" required>
+          </td>
+          <td>
+            <input type="number" class="form-control text-end" value="${item.amount}" min="0" step="0.01" 
+                   onchange="updateExpenseItem(${index}, 'amount', this.value)" required>
+          </td>
+          <td>
+            <button type="button" class="btn btn-sm btn-outline-danger" onclick="removeExpenseItem(${index})">
+              <i class="fas fa-times"></i>
+            </button>
+          </td>
+        `;
+
+        tbody.appendChild(tr);
+      });
+    }
+
+    // อัปเดตข้อมูลรายการค่าใช้จ่าย
+    function updateExpenseItem(index, property, value) {
+      if (index >= 0 && index < expenseItems.length) {
+        if (property === 'amount') {
+          expenseItems[index][property] = parseFloat(value) || 0;
+          calculateTotal();
+        } else {
+          expenseItems[index][property] = value;
+        }
+      }
+    }
+
+    // คำนวณยอดรวม
+    function calculateTotal() {
+      let total = 0;
+
+      expenseItems.forEach(item => {
+        total += parseFloat(item.amount) || 0;
+      });
+
+      document.getElementById('totalAmount').value = total.toFixed(2);
+    }
+
+    // รีเซ็ตฟอร์ม
+    function resetForm() {
+      if (isEditMode) {
+        // ถ้าเป็นโหมดแก้ไข ให้โหลดข้อมูลใหม่
+        loadRequisitionData(editDocNumber);
+      } else {
+        // ถ้าเป็นโหมดสร้างใหม่
+        document.getElementById('paymentRequisitionForm').reset();
+
+        // กำหนดค่าเริ่มต้น
+        generateDocumentNumber();
+
+        const today = new Date();
+        document.getElementById('recordDate').valueAsDate = today;
+
+        const dueDate = new Date();
+        dueDate.setDate(dueDate.getDate() + 7);
+        document.getElementById('dueDate').valueAsDate = dueDate;
+
+        // ล้างรายการค่าใช้จ่าย
+        expenseItems = [];
+        addExpenseItem();
+
+        // ล้างบัญชีธนาคาร
+        document.getElementById('recipientBankAccount').value = '';
+      }
+    }
+
+    // จัดการการส่งฟอร์ม
+    function handleFormSubmit(event) {
+      event.preventDefault();
+
+      // ตรวจสอบความถูกต้องของฟอร์ม
+      if (!validateForm()) {
+        return;
+      }
+
+      // ตรวจสอบรายการค่าใช้จ่าย
+      if (!validateExpenseItems()) {
+        return;
+      }
+
+      // เก็บข้อมูลจากฟอร์ม
+      const formData = {
+        documentNumber: document.getElementById('documentNumber').value,
+        referenceNumber: document.getElementById('referenceNumber').value,
+        company: document.getElementById('company').value,
+        recordDate: document.getElementById('recordDate').value,
+        dueDate: document.getElementById('dueDate').value,
+        expenseType: document.getElementById('expenseType').value,
+        recipient: document.getElementById('recipient').value,
+        recipientBankAccount: document.getElementById('recipientBankAccount').value,
+        project: document.getElementById('project').value,
+        paymentMethod: document.getElementById('paymentMethod').value,
+        notes: document.getElementById('notes').value,
+        totalAmount: parseFloat(document.getElementById('totalAmount').value),
+        expenseItems: expenseItems,
+        recorder: '' // ระบบจะเติมข้อมูลนี้
+      };
+
+      // บันทึกข้อมูล
+      if (isEditMode) {
+        // แก้ไขข้อมูล
+        google.script.run
+          .withSuccessHandler(handleSaveSuccess)
+          .withFailureHandler(handleError)
+          .updatePaymentRequisition(formData);
+      } else {
+        // สร้างข้อมูลใหม่
+        google.script.run
+          .withSuccessHandler(handleSaveSuccess)
+          .withFailureHandler(handleError)
+          .savePaymentRequisition(formData);
+      }
+    }
+
+    // ตรวจสอบความถูกต้องของฟอร์ม
+    function validateForm() {
+      // ตรวจสอบฟิลด์ที่จำเป็น
+      const requiredFields = [
+        {
+          id: 'recordDate',
+          name: 'วันที่บันทึก'
+        },
+        {
+          id: 'dueDate',
+          name: 'วันที่ครบกำหนด'
+        },
+        {
+          id: 'project',
+          name: 'โครงการ'
+        },
+        {
+          id: 'expenseType',
+          name: 'ประเภทรายจ่าย'
+        },
+        {
+          id: 'recipient',
+          name: 'ผู้รับเงิน'
+        },
+        {
+          id: 'paymentMethod',
+          name: 'รูปแบบการจ่าย'
+        }
+      ];
+
+      for (const field of requiredFields) {
+        const element = document.getElementById(field.id);
+        if (!element.value) {
+          showResultModal("กรุณากรอกข้อมูลให้ครบถ้วน", `กรุณาระบุ ${field.name}`, "error");
+          element.focus();
+                    return false;
+        }
+      }
+
+      return true;
+    }
+
+    // ตรวจสอบรายการค่าใช้จ่าย
+    function validateExpenseItems() {
+      if (expenseItems.length === 0) {
+        showResultModal("กรุณาเพิ่มรายการค่าใช้จ่าย", "ต้องมีอย่างน้อย 1 รายการ", "error");
+        return false;
+      }
+
+      for (let i = 0; i < expenseItems.length; i++) {
+        const item = expenseItems[i];
+
+        if (!item.description.trim()) {
+          showResultModal("กรุณากรอกรายละเอียดให้ครบถ้วน", `รายการที่ ${i + 1} ไม่มีคำอธิบาย`, "error");
+          return false;
+        }
+
+        if (parseFloat(item.amount) <= 0) {
+          showResultModal("กรุณากรอกจำนวนเงินให้ถูกต้อง", `รายการที่ ${i + 1} มีจำนวนเงินไม่ถูกต้อง`, "error");
+          return false;
+        }
+      }
+
+      return true;
+    }
+
+    // จัดการเมื่อบันทึกสำเร็จ
+    function handleSaveSuccess(result) {
+      if (result.success) {
+        showResultModal("บันทึกสำเร็จ", result.message, "success");
+
+        // ถ้าเป็นการสร้างใหม่ ให้รีเซ็ตฟอร์ม
+        if (!isEditMode) {
+          resetForm();
+        }
+
+        // เปลี่ยนปุ่ม OK ในโมดัลให้ลิงก์ไปยังรายการใบตั้งเบิก
+        document.getElementById('resultModalBtn').onclick = function () {
+          window.location.href = '<?= ScriptApp.getService().getUrl(); ?>?page=list';
+        };
+      } else {
+        showResultModal("เกิดข้อผิดพลาด", result.message, "error");
+      }
+    }
+
+    // เตรียมเอกสารสำหรับพิมพ์
+    function preparePrintRequisition(type) {
+      // ตรวจสอบความถูกต้องของฟอร์ม
+      if (!validateForm() || !validateExpenseItems()) {
+        return;
+      }
+
+      const data = {
+        documentNumber: document.getElementById('documentNumber').value,
+        referenceNumber: document.getElementById('referenceNumber').value,
+        company: document.getElementById('company').value,
+        recordDate: formatDate(document.getElementById('recordDate').value),
+        dueDate: formatDate(document.getElementById('dueDate').value),
+        expenseType: document.getElementById('expenseType').value,
+        recipient: document.getElementById('recipient').value,
+        recipientBankAccount: document.getElementById('recipientBankAccount').value,
+        project: document.getElementById('project').value,
+        paymentMethod: document.getElementById('paymentMethod').value,
+        notes: document.getElementById('notes').value,
+        totalAmount: parseFloat(document.getElementById('totalAmount').value).toFixed(2),
+        expenseItems: expenseItems
+      };
+
+      let printContent = '';
+
+      if (type === 'requisition') {
+        printContent = generateRequisitionPrintTemplate(data);
+        document.getElementById('printModalLabel').textContent = 'พิมพ์ใบตั้งเบิก';
+      } else if (type === 'transfer') {
+        printContent = generateTransferPrintTemplate(data);
+        document.getElementById('printModalLabel').textContent = 'พิมพ์ใบนำฝาก';
+      }
+
+      document.getElementById('printModalBody').innerHTML = printContent;
+      new bootstrap.Modal(document.getElementById('printModal')).show();
+    }
+
+    function formatDate(dateString) {
+      try {
+        const date = new Date(dateString);
+        return date.toLocaleDateString('th-TH', { // Thai locale
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+        });
+      } catch (e) {
+        console.error("Error formatting date:", e);
+        return "Invalid Date"; // Or some other appropriate error message
+      }
+    }
+
+    function numberToWords(number) {
+      // Replace this with a proper Thai number-to-words conversion
+      // This is just a placeholder
+      return "Thai number in words (IMPLEMENT ME)";
+    }
+
+    // สร้าง template สำหรับพิมพ์ใบตั้งเบิก
+    function generateRequisitionPrintTemplate(data) {
+      let itemsHtml = '';
+      let total = 0;
+
+      data.expenseItems.forEach((item, index) => {
+        itemsHtml += `
+          <tr>
+            <td style="text-align: center;">${index + 1}</td>
+            <td>${item.description}</td>
+            <td style="text-align: right;">${parseFloat(item.amount).toLocaleString('th-TH', {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2
+            })}</td>
+          </tr>
+        `;
+
+        total += parseFloat(item.amount);
+      });
+
+      // แปลงตัวเลขเป็นตัวหนังสือ
+      const totalText = numberToWords(total);
+
+      return `
+        <div class="print-template">
+          <h1>ใบตั้งเบิก</h1>
+
+          <div class="row mb-4">
+            <div class="col-6">
+              <p><strong>เลขที่เอกสาร:</strong> ${data.documentNumber}</p>
+              <p><strong>เลขที่อ้างอิง:</strong> ${data.referenceNumber || '-'}</p>
+              <p><strong>บริษัท:</strong> ${data.company || '-'}</p>
+              <p><strong>โครงการ:</strong> ${data.project}</p>
+            </div>
+            <div class="col-6">
+              <p><strong>วันที่บันทึก:</strong> ${data.recordDate}</p>
+              <p><strong>วันที่ครบกำหนด:</strong> ${data.dueDate}</p>
+              <p><strong>ประเภทรายจ่าย:</strong> ${data.expenseType}</p>
+              <p><strong>รูปแบบการจ่าย:</strong> ${data.paymentMethod}</p>
+            </div>
+          </div>
+
+          <div class="row mb-4">
+            <div class="col-12">
+              <p><strong>ผู้รับเงิน:</strong> ${data.recipient}</p>
+              <p><strong>บัญชีธนาคาร:</strong> ${data.recipientBankAccount || '-'}</p>
+              <p><strong>หมายเหตุ:</strong> ${data.notes || '-'}</p>
+            </div>
+          </div>
+
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th style="width: 10%; text-align: center;">ลำดับ</th>
+                <th style="width: 70%;">รายละเอียด</th>
+                <th style="width: 20%; text-align: right;">จำนวนเงิน</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${itemsHtml}
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="2" style="text-align: right;"><strong>รวมทั้งสิ้น</strong></td>
+                <td style="text-align: right;"><strong>${total.toLocaleString('th-TH', {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2
+                })}</strong></td>
+              </tr>
+              <tr>
+                <td colspan="3" style="text-align: center;">
+                  <strong>( ${totalText} )</strong>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+
+          <div class="row mt-5">
+            <div class="col-4 text-center">
+              <p>____________________</p>
+              <p>ผู้จัดทำ</p>
+            </div>
+            <div class="col-4 text-center">
+              <p>____________________</p>
+              <p>ผู้ตรวจสอบ</p>
+            </div>
+            <div class="col-4 text-center">
+              <p>____________________</p>
+              <p>ผู้อนุมัติ</p>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // สร้าง template สำหรับพิมพ์ใบนำฝาก
+    function generateTransferPrintTemplate(data) {
+      // แปลงตัวเลขเป็นตัวหนังสือ
+      const totalText = numberToWords(parseFloat(data.totalAmount));
+
+      return `
+        <div class="print-template">
+          <h1>ใบนำฝาก / โอนเงิน</h1>
+
+          <div class="row mb-4">
+            <div class="col-6">
+              <p><strong>อ้างอิงใบตั้งเบิกเลขที่:</strong> ${data.documentNumber}</p>
+              <p><strong>วันที่:</strong> ${data.recordDate}</p>
+            </div>
+            <div class="col-6">
+              <p><strong>รูปแบบการชำระเงิน:</strong> ${data.paymentMethod}</p>
+              <p><strong>วันที่ครบกำหนด:</strong> ${data.dueDate}</p>
+            </div>
+          </div>
+
+          <div class="alert alert-info p-3 mb-4">
+            <div class="row">
+              <div class="col-12">
+                <h5 class="mb-3">ข้อมูลผู้รับเงิน</h5>
+                <p><strong>ชื่อผู้รับเงิน:</strong> ${data.recipient}</p>
+                <p><strong>บัญชีธนาคาร:</strong> ${data.recipientBankAccount || 'ไม่ระบุ'}</p>
+                <p><strong>จำนวนเงิน:</strong> ${parseFloat(data.totalAmount).toLocaleString('th-TH', {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2
+                })} บาท</p>
+                <p><strong>จำนวนเงินเป็นตัวอักษร:</strong> ${totalText}</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <h5>รายละเอียด</h5>
+            <p><strong>โครงการ:</strong> ${data.project}</p>
+            <p><strong>ประเภทรายจ่าย:</strong> ${data.expenseType}</p>
+            <p><strong>หมายเหตุ:</strong> ${data.notes || '-'}</p>
+          </div>
+
+          <div class="row mt-5">
+            <div class="col-6 text-center">
+              <p>____________________</p>
+              <p>ผู้สั่งจ่าย</p>
+              <p>วันที่: ____________</p>
+            </div>
+            <div class="col-6 text-center">
+              <p>____________________</p>
+              <p>ผู้รับเงิน</p>
+              <p>วันที่: ____________</p>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // แปลงตัวเลขเป็นตัวหนังสือภาษาไทย
+    function numberToWords(num) {
+      // ปัดเศษทศนิยมให้เหลือ 2 ตำแหน่ง
+      num = parseFloat(num.toFixed(2));
+
+      const digits = ['ศูนย์', 'หนึ่ง', 'สอง', 'สาม', 'สี่', 'ห้า', 'หก', 'เจ็ด', 'แปด', 'เก้า'];
+      const positions = ['', 'สิบ', 'ร้อย', 'พัน', 'หมื่น', 'แสน', 'ล้าน'];
+
+      let baht = Math.floor(num);
+      let satang = Math.round((num - baht) * 100);
+      let result = '';
+
+      if (baht === 0) {
+        result = 'ศูนย์บาท';
+      } else {
+        // แปลงจำนวนบาท
+        let bahtText = '';
+        let millions = Math.floor(baht / 1000000);
+        let remainder = baht % 1000000;
+
+        if (millions > 0) {
+          bahtText += readMillions(millions) + 'ล้าน';
+        }
+
+        if (remainder > 0) {
+          bahtText += readThousands(remainder);
+        }
+
+        result = bahtText + 'บาท';
+      }
+
+      // แปลงจำนวนสตางค์
+      if (satang > 0) {
+        let satangText = '';
+        let tens = Math.floor(satang / 10);
+        let ones = satang % 10;
+
+        if (tens > 0) {
+          if (tens === 1) {
+            satangText += 'สิบ';
+          } else if (tens === 2) {
+            satangText += 'ยี่สิบ';
+          } else {
+            satangText += digits[tens] + 'สิบ';
+          }
+        }
+
+        if (ones > 0) {
+          if (ones === 1 && tens > 0) {
+            satangText += 'เอ็ด';
+          } else {
+            satangText += digits[ones];
+          }
+        }
+
+        result += satangText + 'สตางค์';
+      } else {
+        result += 'ถ้วน';
+      }
+
+      return result;
+
+      // ฟังก์ชันอ่านจำนวนน้อยกว่าล้าน
+      function readThousands(num) {
+        if (num === 0) return '';
+
+        let result = '';
+        let pos = 0;
+
+        while (num > 0) {
+          let digit = num % 10;
+
+          if (digit !== 0) {
+            // กรณีพิเศษ: เลข 1 ในหลักสิบ
+            if (pos === 1 && digit === 1) {
+              result = 'สิบ' + result;
+            }
+            // กรณีพิเศษ: เลข 2 ในหลักสิบ
+            else if (pos === 1 && digit === 2) {
+              result = 'ยี่สิบ' + result;
+            }
+            // กรณีพิเศษ: เลข 1 ในหลักหน่วย เมื่อมีหลักสิบ
+            else if (pos === 0 && digit === 1 && Math.floor(num / 10) > 0) {
+              result = 'เอ็ด' + result;
+            } else {
+              result = digits[digit] + positions[pos] + result;
+            }
+          }
+
+          num = Math.floor(num / 10);
+          pos++;
+        }
+
+        return result;
+      }
+
+      // ฟังก์ชันอ่านจำนวนหลักล้าน
+      function readMillions(num) {
+        return readThousands(num);
+      }
+    }
+
+    // แสดงโมดัลผลการทำงาน
+    function showResultModal(title, message, type = "info") {
+      const resultModal = new bootstrap.Modal(document.getElementById('resultModal'));
+      document.getElementById('resultModalLabel').textContent = title;
+
+      let alertClass = 'alert-info';
+      if (type === 'success') alertClass = 'alert-success';
+      if (type === 'error') alertClass = 'alert-danger';
+
+      document.getElementById('resultModalBody').innerHTML = `
+        <div class="alert ${alertClass}" role="alert">
+          ${message}
+        </div>
+      `;
+
+      resultModal.show();
+    }
+
+    // แปลงรูปแบบวันที่
+    function formatDate(dateStr) {
+      try {
+        const date = new Date(dateStr);
+        return date.toLocaleDateString('th-TH', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+        });
+      } catch (e) {
+        console.error("Error formatting date:", e);
+        return dateStr;
+      }
+    }
+
+    // จัดการข้อผิดพลาด
+    function handleError(error) {
+      console.error(error);
+      showResultModal("เกิดข้อผิดพลาด", error.message || error, "error");
+    }
+
+    function setSelectValue(selectId, value) {
+      const select = document.getElementById(selectId);
+      if (select && value) {
+        select.value = value;
+        // Trigger change event for Tom Select to recognize the change
+        const tomSelect = select.tomselect;
+        if (tomSelect) {
+          tomSelect.setValue(value);
+        }
+      }
+    }
+    // ฟังก์ชันสำหรับออกจากระบบ
+    // ฟังก์ชันสำหรับออกจากระบบ
+    function logout() {
+      // ในระบบจริงควรมีการเคลียร์ session หรือ token
+      showResultModal("ออกจากระบบ", "ออกจากระบบสำเร็จ", "info");
+
+      setTimeout(() => {
+        window.location.href = '<?!= ScriptApp.getService().getUrl(); ?>';
+      }, 1000);
+    }
+  </script>
+</body>
+
+</html>
